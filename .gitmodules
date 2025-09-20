@@ -1,0 +1,3 @@
+[submodule "learn-go"]
+	path = learn-go
+	url = git@github.com:KitsuneKode/learn-go.git
