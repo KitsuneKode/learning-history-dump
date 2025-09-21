@@ -1,7 +1,7 @@
 import { Type, type FunctionDeclaration } from "@google/genai";
-export const sum: FunctionDeclaration = {
-  name: "get_sum",
-  description: "Calculates the sum of two numbers. ",
+export const multiply: FunctionDeclaration = {
+  name: "get_multiplication",
+  description: "Calculates the multiplication between two numbers",
   parametersJsonSchema: {
     type: "OBJECT",
     properties: {
@@ -16,6 +16,6 @@ export const sum: FunctionDeclaration = {
   },
 };
 
-export const executeSum = (a: number, b: number): number => {
-  return a + b;
+export const executeMultiply = (a: number, b: number): number => {
+  return a * b;
 };
