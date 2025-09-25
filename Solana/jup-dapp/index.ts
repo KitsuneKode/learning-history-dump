@@ -33,7 +33,10 @@ async function swap() {
         `You will get ${quoteResponse.data.outAmount} of ${outPutTokenMintName} for ${qty} of SOL `,
       );
 
-      const quoteData = JSON.stringify(quoteResponse.data);
+      const quoteData = JSON.stringify({
+        quoteResponse: quoteResponse.data,
+        userPublicKey: publicKey,
+      });
       const ans = prompt("do you to swap? y/n ");
 
       if (ans === "y") {
@@ -61,7 +64,7 @@ async function requestUnsignedSwapTransaction(quoteData: string) {
     const marketResponse = await axios.request(config);
 
     if (marketResponse.data) {
-      console.log(marketResponse.data);
+      console.log(marketResponse.data.swapTransaction);
     }
   } catch (error) {
     console.error((error as AxiosError).message);
