@@ -3,13 +3,12 @@ import {
   Connection,
   Keypair,
   LAMPORTS_PER_SOL,
-  sendAndConfirmTransaction,
-  Transaction,
+  SendTransactionError,
   VersionedTransaction,
 } from "@solana/web3.js";
 import bs58 from "bs58";
 
-const qty = 0.0000001 * LAMPORTS_PER_SOL;
+const qty = 0.00001 * LAMPORTS_PER_SOL;
 const JUP_URl = "https://lite-api.jup.ag";
 
 const SLIPPAGE = 5;
@@ -17,8 +16,8 @@ const SLIPPAGE = 5;
 const privateKey = bs58.decode(process.env.PRIVATE_KEY!);
 
 const inputMint = "So11111111111111111111111111111111111111112";
-const outPutTokenMintName = "TROLL";
-const outputMint = "5UUH9RTDiSpq6HKS6bp4NdU9PNJpXRXuiw6ShBTBhgH2";
+const outPutTokenMintName = "TRUMP";
+const outputMint = "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN";
 
 const keyPair = Keypair.fromSecretKey(privateKey);
 
@@ -78,7 +77,8 @@ async function requestUnsignedSwapTransaction(quoteData: string) {
       console.log({ swapTransaction: marketResponse.data.swapTransaction });
 
       const tx = Uint8Array.from(
-        Buffer.from(marketResponse.data.swapTransaction, "base64"),
+        atob(marketResponse.data.swapTransaction),
+        (c) => c.charCodeAt(0),
       );
       await signSwapTransaction(tx);
     }
@@ -95,7 +95,8 @@ async function signSwapTransaction(transaction: Uint8Array) {
     const txId = await connection.sendTransaction(tx);
     console.log(`https://explorer.solana.com/tx/${txId}?cluster=mainnet`);
   } catch (error) {
-    console.error(error);
+    const errorLogs = await (error as SendTransactionError).getLogs(connection);
+    console.log(errorLogs);
   }
 }
 
