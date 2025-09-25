@@ -8,7 +8,7 @@ import {
 } from "@solana/web3.js";
 import bs58 from "bs58";
 
-const qty = 0.00001 * LAMPORTS_PER_SOL;
+const qty = 0.0000001 * LAMPORTS_PER_SOL;
 const JUP_URl = "https://lite-api.jup.ag";
 
 const SLIPPAGE = 5;
