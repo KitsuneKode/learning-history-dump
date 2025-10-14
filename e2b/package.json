@@ -1,0 +1,20 @@
+{
+  "name": "e2b",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@e2b/code-interpreter": "^2.0.1",
+    "@openrouter/ai-sdk-provider": "^1.2.0",
+    "@types/express": "^5.0.3",
+    "ai": "^5.0.70",
+    "express": "^5.1.0",
+    "zod": "^4.1.12"
+  }
+}
