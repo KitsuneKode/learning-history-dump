@@ -1,6 +1,7 @@
+import { RedisClient, sleep } from "bun";
 import { createClient } from "redis";
 
-export const redis = await createClient()
+const redis = await createClient()
   .on("error", (err) => console.error("Redis Client Error", err))
   .connect();
 
@@ -37,7 +38,7 @@ async function main() {
 
     console.log(JSON.stringify(response[0]?.messages[0]?.message));
     const id = response[0]?.messages[0]?.id;
-    await new Promise((s) => setTimeout(s, 200));
+    await sleep(100);
     if (id) {
       await redis.xAck("mygroup", "mygroup", id);
       console.log("done");

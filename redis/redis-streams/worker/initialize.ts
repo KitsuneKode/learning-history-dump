@@ -1,7 +1,19 @@
-import { redis } from ".";
+import { createClient } from "redis";
 
-const seed = await redis.xGroupCreate("mystream", "mygroup", "$", {
-  MKSTREAM: true,
-});
+const redis = await createClient()
+  .on("error", (err) => console.error("Redis Client Error", err))
+  .connect();
+let seed = null;
+try {
+  seed = await redis.xGroupCreate("new", "mygroup", "$", {
+    MKSTREAM: true,
+  });
+} catch (err: unknown) {
+  console.error("seed failed");
+  console.error((err as Error).message);
+}
+if (seed) {
+  console.log("done", seed);
+}
 
-console.log("done", seed);
+redis.quit();
