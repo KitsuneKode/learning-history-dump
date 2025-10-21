@@ -1,0 +1,16 @@
+{
+  "name": "mustache-implementation-experiments",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@types/mustache": "^4.2.6",
+    "mustache": "^4.2.0"
+  }
+}
