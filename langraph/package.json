@@ -1,0 +1,19 @@
+{
+  "name": "langraph",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@langchain/core": "^1.0.1",
+    "@langchain/google-genai": "^1.0.0",
+    "@langchain/langgraph": "^1.0.0",
+    "langchain": "^1.0.1",
+    "zod": "^4.1.12"
+  }
+}
